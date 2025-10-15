@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | Placement Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gradient-text {-webkit-background-clip: text;-webkit-text-fill-color: transparent;background-clip: text;background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);}
+        body {background-color: #f3f4f6;min-height: 100vh;display: flex;flex-direction: column;}
+        .nav-link.active {border-bottom: 3px solid #4f46e5;color: #4f46e5;font-weight: 600;}
+    </style>
+</head>
+<body>
+
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">PT</span>
+                    </div>
+                    <h1 class="text-xl font-bold text-gray-800 hidden sm:block">Placement Tracker</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="text-right">
+                        <p class="text-sm font-semibold text-gray-800">John Doe</p>
+                        <p class="text-xs text-gray-500">(Student Profile)</p>
+                    </div>
+                    <a href="index.html" class="bg-red-500 text-white px-4 py-2 rounded-full text-sm hover:bg-red-600 transition shadow">Logout</a>
+                </div>
+            </div>
+
+            <nav id="dashboardNav" class="mt-4 flex space-x-6 overflow-x-auto border-t pt-2">
+                <a href="dashboard.html" class="nav-link py-2 px-3 text-sm text-gray-700 hover:text-indigo-600 transition whitespace-nowrap">Overview</a>
+                <a href="profile.html" class="nav-link active py-2 px-3 text-sm text-gray-700 hover:text-indigo-600 transition whitespace-nowrap">My Profile</a>
+                <a href="job-drives.html" class="nav-link py-2 px-3 text-sm text-gray-700 hover:text-indigo-600 transition whitespace-nowrap">Job Drives</a>
+                <a href="schedules.html" class="nav-link py-2 px-3 text-sm text-gray-700 hover:text-indigo-600 transition whitespace-nowrap">Schedules</a>
+                <a href="analytics.html" class="nav-link py-2 px-3 text-sm text-gray-700 hover:text-indigo-600 transition whitespace-nowrap">Analytics</a>
+                <a href="documents.html" class="nav-link py-2 px-3 text-sm text-gray-700 hover:text-indigo-600 transition whitespace-nowrap">Documents</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow container mx-auto px-6 py-10">
+        <h1 class="text-3xl font-bold text-gray-900 mb-6">My Profile</h1>
+        
+        <div class="p-8 bg-white rounded-xl shadow-lg border border-gray-200">
+            <p class="text-lg text-gray-600">This section will contain the user's detailed academic records, contact information, skills, and resume upload form. </p>
+            <p class="mt-4 text-sm text-indigo-500">TODO: Build Profile Editing Forms and Data Display.</p>
+        </div>
+
+    </main>
+
+    <footer class="bg-gray-900 text-white py-6 mt-auto z-10">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-gray-400 text-sm">&copy; 2025 Placement Tracker. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | Placement Tracker</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Reusing custom landing page styles */
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Animated Background Styles - Reused from Register Page */
+        body {
+            background: linear-gradient(to bottom right, #f8fafc, #eff6ff); /* Very light blueish gradient */
+            overflow-x: hidden; 
+            position: relative; 
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Styles for animated elements */
+        .animated-element {
+            position: absolute;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease-out;
+        }
+        .animated-element.active {
+            opacity: 1;
+            transition: none;
+        }
+
+        /* Bicycle Student */
+        @keyframes ride-across {
+            0% { transform: translateX(-100%) translateY(0) rotate(0deg); }
+            100% { transform: translateX(200%) translateY(-20px) rotate(5deg); opacity: 0;}
+        }
+        .bicycle-student {
+            width: 80px;
+            height: 60px;
+            bottom: 15%; 
+            animation: ride-across 10s linear infinite; 
+            animation-delay: var(--delay);
+            left: -10%; 
+            opacity: 0.8;
+        }
+
+        /* Graduation Cap */
+        @keyframes cap-throw {
+            0% { transform: translateY(0) rotate(0deg) scale(0.8); opacity: 0; }
+            20% { opacity: 1; transform: translateY(-150px) rotate(45deg) scale(1); }
+            100% { transform: translateY(-300px) rotate(90deg) scale(0.6); opacity: 0; }
+        }
+        .graduation-cap {
+            width: 60px;
+            height: 40px;
+            top: 20%;
+            left: 10%;
+            animation: cap-throw 6s ease-out forwards;
+            animation-play-state: paused;
+        }
+
+        /* Flying Papers */
+        @keyframes paper-float {
+            0% { transform: translate(0, 0) rotate(0deg); opacity: 0.5; }
+            50% { transform: translate(50px, -100px) rotate(180deg); opacity: 0.8; }
+            100% { transform: translate(100px, -200px) rotate(360deg); opacity: 0; }
+        }
+        .flying-paper {
+            width: 40px;
+            height: 50px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 2px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            animation: paper-float 8s ease-in-out infinite alternate;
+            animation-delay: var(--delay);
+            top: var(--top);
+            left: var(--left);
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        .flying-paper.active {
+            opacity: 0.7;
+        }
+
+        /* Floating Books */
+        @keyframes book-drift {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+        .floating-book {
+            width: 50px;
+            height: 70px;
+            background-color: #a78bfa; 
+            border-radius: 4px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+            position: absolute; 
+            animation: book-drift 5s ease-in-out infinite alternate;
+            animation-delay: var(--delay);
+            top: var(--top);
+            left: var(--left);
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        .floating-book.active {
+            opacity: 0.8;
+        }
+
+        /* Trophy - Appears from bottom, floats up */
+        @keyframes trophy-float-up {
+            0% { transform: translateY(100%); opacity: 0; }
+            50% { transform: translateY(-20%); opacity: 1; }
+            100% { transform: translateY(-50%); opacity: 0; }
+        }
+        .trophy {
+            width: 70px;
+            height: 90px;
+            bottom: -100px;
+            left: 70%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23FFD700"><path d="M22 2H2V22h20V2zM12 11c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zm0 8c-2.76 0-5-2.24-5-5h2c0 1.66 1.34 3 3 3s3-1.34 3-3h2c0 2.76-2.24 5-5 5zM12 3a7 7 0 00-7 7H3v2h2v7a1 1 0 001 1h12a1 1 0 001-1v-7h2v-2h-2a7 7 0 00-7-7zm0 2a5 5 0 015 5H7a5 5 0 015-5z"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            animation: trophy-float-up 8s ease-out forwards;
+            animation-play-state: paused;
+        }
+
+        /* Confetti Particles (simplified for CSS) */
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100px) rotateZ(0deg); opacity: 0.8; }
+            100% { transform: translateY(100vh) rotateZ(720deg); opacity: 0; }
+        }
+        .confetti {
+            width: 8px;
+            height: 8px;
+            background-color: var(--color); 
+            border-radius: 50%;
+            top: -20px;
+            animation: confetti-fall var(--duration) linear infinite;
+            animation-delay: var(--delay);
+            left: var(--left);
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        .confetti.active {
+            opacity: 0.7;
+        }
+
+        /* Ensure main content is above animations */
+        main {
+            position: relative;
+            z-index: 10;
+        }
+        .form-card-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .form-card-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- 1. Navbar (Header) -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+                    <span class="text-white font-bold text-xl">PT</span>
+                </div>
+                <h1 class="text-xl font-bold gradient-text">Placement Tracker</h1>
+            </div>
+            
+            <ul class="flex space-x-8 items-center">
+                <li><a href="/" class="text-gray-700 hover:text-blue-600 transition">Home</a></li>
+                <li id="loginLink"><a href="/login.html" class="border-2 border-blue-600 text-blue-600 px-6 py-2 rounded-full hover:bg-blue-600 hover:text-white transition">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 2. Main Registration Content -->
+    <main class="flex-grow flex items-center justify-center py-12 px-4 z-10">
+        <div class="w-full max-w-lg">
+            
+            <!-- Title -->
+            <div class="text-center mb-10">
+                <h2 class="mt-4 text-3xl font-bold text-gray-800">Create Your <span class="gradient-text">Account</span></h2>
+                <p class="text-gray-600">Start your journey to better placements today.</p>
+            </div>
+
+            <!-- Form Card -->
+            <div class="bg-white p-8 md:p-10 rounded-3xl shadow-2xl border border-blue-200 form-card-lift">
+                <form id="registrationForm" class="space-y-6">
+                    
+                    <!-- Full Name Field -->
+                    <div>
+                        <label for="full-name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                        <input id="full-name" name="full_name" type="text" required class="w-full p-3 border border-gray-300 rounded-xl placeholder-gray-400 focus:ring-purple-500 focus:border-purple-500 transition duration-150" placeholder="John Doe">
+                    </div>
+
+                    <!-- Email Address Field -->
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address (College ID)</label>
+                        <input id="email" name="email" type="email" autocomplete="email" required class="w-full p-3 border border-gray-300 rounded-xl placeholder-gray-400 focus:ring-purple-500 focus:border-purple-500 transition duration-150" placeholder="your.name@college.edu">
+                    </div>
+
+                    <!-- Account Type Selector -->
+                    <div>
+                        <label for="account-type" class="block text-sm font-medium text-gray-700 mb-1">I am a...</label>
+                        <select id="account-type" name="account_type" required class="w-full p-3 border border-gray-300 bg-white rounded-xl focus:ring-purple-500 focus:border-purple-500 transition duration-150">
+                            <option value="" disabled selected>Select Account Type</option>
+                            <option value="student">Student</option>
+                            <option value="tpo-admin">TPO Admin</option>
+                            <option value="recruiter">Recruiter</option>
+                        </select>
+                    </div>
+
+                    <!-- Password Field -->
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                        <input id="password" name="password" type="password" autocomplete="new-password" required class="w-full p-3 border border-gray-300 rounded-xl placeholder-gray-400 focus:ring-purple-500 focus:border-purple-500 transition duration-150" placeholder="Minimum 8 characters">
+                    </div>
+
+                    <!-- Confirm Password Field -->
+                    <div>
+                        <label for="confirm-password" class="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
+                        <input id="confirm-password" name="confirm_password" type="password" required class="w-full p-3 border border-gray-300 rounded-xl placeholder-gray-400 focus:ring-purple-500 focus:border-purple-500 transition duration-150" placeholder="Repeat your password">
+                    </div>
+
+                    <!-- Terms and Conditions Checkbox -->
+                    <div class="flex items-start">
+                        <input id="terms" name="terms" type="checkbox" required class="h-5 w-5 text-purple-600 border-gray-300 rounded-md focus:ring-purple-500 mt-1">
+                        <label for="terms" class="ml-3 block text-sm text-gray-600">
+                            I agree to the 
+                            <a href="#" class="font-medium text-purple-600 hover:text-purple-700">Terms of Service</a>.
+                        </label>
+                    </div>
+                    
+                    <!-- Message Box for Feedback -->
+                    <div id="messageBox" class="hidden p-3 rounded-lg text-sm font-medium" role="alert"></div>
+
+                    <!-- Submit Button -->
+                    <div>
+                        <button type="submit" id="registerButton" class="w-full flex justify-center py-3 px-4 rounded-xl shadow-lg text-lg font-bold text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition duration-300 transform hover:scale-[1.01]">
+                            Sign Up
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Login Link -->
+                <p class="mt-6 text-center text-sm text-gray-600">
+                    Already have an account?
+                    <a href="/login.html" class="font-bold gradient-text hover:underline">
+                        Log In
+                    </a>
+                </p>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Animated Elements Container -->
+    <div id="animation-container">
+        <!-- Bicycle Student -->
+        <img src="https://www.svgrepo.com/show/305263/bicycle.svg" alt="Bicycle Student" class="animated-element bicycle-student" style="--delay: 0s;">
+        <img src="https://www.svgrepo.com/show/305263/bicycle.svg" alt="Bicycle Student" class="animated-element bicycle-student" style="--delay: 5s;">
+
+        <!-- Graduation Cap -->
+        <div class="animated-element graduation-cap" id="gradCap">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#667eea">
+                <path d="M12 2L0 8v2h24V8L12 2zm-1 14h2v-6h-2v6zm6 0h2v-6h-2v6zm-12 0h2v-6H5v6z"/>
+            </svg>
+        </div>
+
+        <!-- Flying Papers -->
+        <div class="animated-element flying-paper" style="--top: 10%; --left: 5%; --delay: 0s;" id="paper1"></div>
+        <div class="animated-element flying-paper" style="--top: 30%; --left: 80%; --delay: 2s;" id="paper2"></div>
+        <div class="animated-element flying-paper" style="--top: 60%; --left: 20%; --delay: 4s;" id="paper3"></div>
+
+        <!-- Floating Books -->
+        <div class="animated-element floating-book" style="--top: 25%; --left: 20%; --delay: 1s;" id="book1"></div>
+        <div class="animated-element floating-book" style="--top: 50%; --left: 90%; --delay: 3s;" id="book2"></div>
+
+        <!-- Trophy -->
+        <div class="animated-element trophy" id="trophy"></div>
+        
+    </div>
+
+    <!-- 3. Footer -->
+    <footer class="bg-gray-900 text-white py-12 mt-auto z-50">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <!-- Company Info -->
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-xl">PT</span>
+                        </div>
+                        <h3 class="text-xl font-bold">Placement Tracker</h3>
+                    </div>
+                    <p class="text-gray-400">Empowering institutions with smart placement management solutions.</p>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="/" class="hover:text-white transition">Home</a></li>
+                        <li><a href="/login.html" class="hover:text-white transition">Login</a></li>
+                        <li><a href="#" class="hover:text-white transition">Features</a></li>
+                        <li><a href="#" class="hover:text-white transition">About</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Resources -->
+                <div>
+                    <h4 class="font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">Documentation</a></li>
+                        <li><a href="#" class="hover:text-white transition">Support</a></li>
+                        <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Connect With Us -->
+                <div>
+                    <h4 class="font-semibold mb-4">Connect With Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-400 transition">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39-.023-.78-.048-1.17-.08a13.995 13.995 0 007.618 2.221 13.983 13.983 0 0013.98-13.98c0-.181-.002-.36-.007-.538A10.638 10.638 0 0024 4.57z"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-700 transition">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M22.23 0H1.77C.79 0 0 .77 0 1.73v20.54c0 .96.79 1.73 1.77 1.73h20.46c.98 0 1.77-.77 1.77-1.73V1.73c0-.96-.79-1.73-1.77-1.73zM7.17 19.34H3.88V9.38h3.29v9.96zM5.53 7.9c-1.09 0-1.98-.87-1.98-1.95S4.44 4 5.53 4s1.98.87 1.98 1.95-1.07 1.95-1.98 1.95zm13.81 11.44h-3.29v-5.26c0-1.26-.45-2.12-1.58-2.12-.86 0-1.38.58-1.61 1.15-.08.2-.1.49-.1.79v5.44H9.77s.05-9.01 0-9.96h3.29v1.41c.44-.65 1.25-1.58 2.97-1.58 2.17 0 3.82 1.41 3.82 4.45v5.68z"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-pink-600 transition">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.013 4.85.07c3.774.148 5.514 1.98 5.663 5.765.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.149 3.784-1.89 5.615-5.663 5.765-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-3.773-.15-5.514-1.981-5.663-5.765-.058-1.266-.07-1.646-.07-4.85s.013-3.584.07-4.85c.149-3.784 1.89-5.616 5.663-5.765 1.266-.058 1.646-.07 4.85-.07zm0 2.224c-3.14 0-3.518.012-4.763.068-3.327.13-4.855 1.777-4.982 5.097-.056 1.245-.067 1.623-.067 4.763s.011 3.518.067 4.763c.127 3.32 1.655 4.967 4.982 5.097 1.245.056 1.623.068 4.763.068s3.518-.012 4.763-.068c3.327-.13 4.855-1.777 4.982-5.097.056-1.245.067-1.623.067-4.763s-.011-3.518-.067-4.763c-.127-3.32-1.655-4.967-4.982-5.097-1.245-.056-1.623-.068-4.763-.068zm0 1.94c3.085 0 5.592 2.507 5.592 5.592s-2.507 5.592-5.592 5.592-5.592-2.507-5.592-5.592 2.507-5.592 5.592-5.592zm0 2.224c-1.865 0-3.368 1.503-3.368 3.368s1.503 3.368 3.368 3.368 3.368-1.503 3.368-3.368-1.503-3.368-3.368-3.368zm6.54-3.567c-.636 0-1.15.514-1.15 1.15s.514 1.15 1.15 1.15 1.15-.514 1.15-1.15-.514-1.15-1.15-1.15z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="container mx-auto px-6 mt-8 pt-8 border-t border-gray-800 text-center">
+                <p class="text-gray-400 text-sm">&copy; 2025 Placement Tracker. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for API communication and Animations -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('registrationForm');
+            const registerButton = document.getElementById('registerButton');
+            const messageBox = document.getElementById('messageBox');
+            const passwordInput = document.getElementById('password');
+            const confirmPasswordInput = document.getElementById('confirm-password');
+
+            // --- Utility Functions ---
+
+            function showMessage(message, type = 'error') {
+                messageBox.textContent = message;
+                messageBox.className = 'p-3 rounded-lg text-sm font-medium';
+                if (type === 'success') {
+                    messageBox.classList.add('bg-green-100', 'text-green-700', 'border', 'border-green-300');
+                } else if (type === 'error') {
+                    messageBox.classList.add('bg-red-100', 'text-red-700', 'border', 'border-red-300');
+                } else {
+                    messageBox.classList.add('bg-blue-100', 'text-blue-700', 'border', 'border-blue-300');
+                }
+                messageBox.classList.remove('hidden');
+            }
+
+            function hideMessage() {
+                messageBox.classList.add('hidden');
+            }
+
+            // --- Form Submission Handler ---
+
+            form.addEventListener('submit', async function(event) {
+                event.preventDefault();
+                hideMessage();
+                registerButton.disabled = true;
+                registerButton.textContent = 'Processing...';
+                registerButton.classList.add('opacity-70');
+
+                // 1. Password validation
+                if (passwordInput.value !== confirmPasswordInput.value) {
+                    showMessage("Passwords do not match.", 'error');
+                    registerButton.disabled = false;
+                    registerButton.textContent = 'Sign Up';
+                    registerButton.classList.remove('opacity-70');
+                    return;
+                }
+
+                const userData = {
+                    full_name: document.getElementById('full-name').value,
+                    email: document.getElementById('email').value,
+                    password: passwordInput.value,
+                    account_type: document.getElementById('account-type').value
+                };
+
+                // Determine the base URL dynamically for robust network calls
+                const API_BASE_URL = window.location.origin;
+
+                try {
+                    // Fetch call using the absolute URL
+                    const response = await fetch(`${API_BASE_URL}/users/register`, { 
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(userData)
+                    });
+
+                    // Check if the response was successful
+                    if (!response.ok) {
+                        // If it's not OK, try to read the JSON for the error details
+                        const errorResult = await response.json();
+                        const detail = errorResult.detail || `Server responded with status: ${response.status}.`;
+                        
+                        // Check specifically for common API errors (e.g., email already registered, bad data)
+                        if (response.status === 400) {
+                            showMessage(`Registration failed: ${detail}`, 'error');
+                        } else {
+                            // Catch all other server errors (500, etc.)
+                            showMessage(`Registration failed: ${detail}`, 'error');
+                        }
+                        
+                    } else {
+                        // Successful registration (201 Created)
+                        showMessage('Registration successful! Redirecting to login...', 'success');
+                        
+                        setTimeout(() => {
+                            window.location.href = '/login.html'; // Use absolute path for redirects
+                        }, 1500);
+                    }
+
+                } catch (error) {
+                    // This block catches genuine network errors (server down, CORS, etc.)
+                    console.error('Network or unexpected error:', error);
+                    showMessage('Network error. Please try again. Check server console for details.', 'error');
+                } finally {
+                    registerButton.disabled = false;
+                    registerButton.textContent = 'Sign Up';
+                    registerButton.classList.remove('opacity-70');
+                }
+            });
+
+            // --- Animation Activation Logic (Reused) ---
+            function handleScrollAnimations() {
+                const windowHeight = window.innerHeight;
+                const formElement = document.querySelector('main');
+                if (!formElement) return;
+
+                const formRect = formElement.getBoundingClientRect();
+                const formVisible = formRect.top < windowHeight * 0.8 && formRect.bottom > windowHeight * 0.2;
+
+                const floatingElements = document.querySelectorAll('.bicycle-student, .flying-paper, .floating-book, .confetti');
+                floatingElements.forEach(el => {
+                    if (formVisible) { 
+                        el.classList.add('active');
+                    } else {
+                        el.classList.remove('active');
+                    }
+                });
+
+                const gradCap = document.getElementById('gradCap');
+                const trophy = document.getElementById('trophy');
+
+                if (formVisible && gradCap && gradCap.style.animationPlayState === 'paused') {
+                    gradCap.style.animationPlayState = 'running';
+                    gradCap.style.opacity = '1';
+                }
+
+                if (formVisible && trophy && trophy.style.animationPlayState === 'paused') {
+                    trophy.style.animationPlayState = 'running';
+                    trophy.style.opacity = '1';
+                }
+            }
+
+            // Confetti Generation
+            const animationContainer = document.getElementById('animation-container');
+            const confettiColors = ['#f87171', '#fb923c', '#fcd34d', '#a78bfa', '#818cf8', '#60a5fa', '#34d399'];
+            const numConfetti = 50;
+
+            function createConfetti() {
+                for (let i = 0; i < numConfetti; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.classList.add('animated-element', 'confetti');
+                    confetti.style.setProperty('--color', confettiColors[Math.floor(Math.random() * confettiColors.length)]);
+                    confetti.style.setProperty('--left', Math.random() * 100 + 'vw');
+                    confetti.style.setProperty('--duration', (Math.random() * 5 + 5) + 's');
+                    confetti.style.setProperty('--delay', (Math.random() * 5) + 's');
+                    animationContainer.appendChild(confetti);
+                }
+            }
+            
+            if (animationContainer) {
+                createConfetti(); 
+                window.addEventListener('scroll', handleScrollAnimations);
+                handleScrollAnimations(); 
+            }
+        });
+    </script>
+</body>
+</html>
+```
+
+The key change is the introduction of `const API_BASE_URL = window.location.origin;` and using a template literal for the fetch call:
+
+```javascript
+const response = await fetch(`${API_BASE_URL}/users/register`, { /* ... */ });

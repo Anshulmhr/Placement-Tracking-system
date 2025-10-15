@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Placement Tracker - Transform Your Campus Recruitment</title>
+ <script src="https://cdn.tailwindcss.com"></script>
+ <style>
+  @keyframes fadeInUp {
+   from {
+    opacity: 0;
+    transform: translateY(30px);
+   }
+   to {
+    opacity: 1;
+    transform: translateY(0);
+   }
+  }
+  
+  @keyframes float {
+   0%, 100% { transform: translateY(0px); }
+   50% { transform: translateY(-20px); }
+  }
+  
+  .fade-in-up {
+   animation: fadeInUp 0.8s ease-out;
+  }
+  
+  .float {
+   animation: float 3s ease-in-out infinite;
+  }
+  
+  .gradient-text {
+   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   background-clip: text;
+  }
+  
+  .card-hover {
+   transition: all 0.3s ease;
+  }
+  
+  .card-hover:hover {
+   transform: translateY(-10px);
+   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+ </style>
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen">
+
+  <nav class="bg-white shadow-lg sticky top-0 z-50">
+  <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+   <div class="flex items-center space-x-2">
+    <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+     <span class="text-white font-bold text-xl">PT</span>
+    </div>
+    <h1 class="text-xl font-bold gradient-text">Placement Tracker</h1>
+   </div>
+      <button id="mobileMenuButton" class="md:hidden text-gray-700 focus:outline-none">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+   </button>
+      <ul id="navLinks" class="hidden md:flex space-x-8 items-center">
+    <li><a href="#home" class="text-gray-700 hover:text-blue-600 transition">Home</a></li>
+    <li><a href="#features" class="text-gray-700 hover:text-blue-600 transition">Features</a></li>
+    <li><a href="#statistics" class="text-gray-700 hover:text-blue-600 transition">Statistics</a></li>
+    <li><a href="#testimonials" class="text-gray-700 hover:text-blue-600 transition">Testimonials</a></li>     <li><a href="#about" class="text-gray-700 hover:text-blue-600 transition">About</a></li>
+    <li><a href="#contact" class="text-gray-700 hover:text-blue-600 transition">Contact</a></li>
+    <li id="registerLink"><a href="register.html" class="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition">Register</a></li>
+    <li id="loginLink"><a href="login.html" class="border-2 border-blue-600 text-blue-600 px-6 py-2 rounded-full hover:bg-blue-600 hover:text-white transition">Login</a></li>
+   </ul>
+  </div>
+    <div id="mobileMenu" class="md:hidden hidden">
+   <ul class="flex flex-col space-y-2 p-4 bg-white border-t border-gray-200">
+    <li><a href="#home" class="block py-2 text-gray-700 hover:text-blue-600 transition">Home</a></li>
+    <li><a href="#features" class="block py-2 text-gray-700 hover:text-blue-600 transition">Features</a></li>
+    <li><a href="#statistics" class="block py-2 text-gray-700 hover:text-blue-600 transition">Statistics</a></li>
+    <li><a href="#testimonials" class="block py-2 text-gray-700 hover:text-blue-600 transition">Testimonials</a></li>
+    <li><a href="#about" class="block py-2 text-gray-700 hover:text-blue-600 transition">About</a></li>
+    <li><a href="#contact" class="block py-2 text-gray-700 hover:text-blue-600 transition">Contact</a></li>
+    <li><a href="register.html" class="block text-center mt-2 bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition">Register</a></li>
+    <li><a href="login.html" class="block text-center mt-2 border-2 border-blue-600 text-blue-600 px-6 py-2 rounded-full hover:bg-blue-600 hover:text-white transition">Login</a></li>
+   </ul>
+  </div>
+ </nav>
+
+  <section id="home" class="container mx-auto px-6 py-20 text-center fade-in-up">
+  <div class="max-w-4xl mx-auto">
+   <h2 class="text-5xl md:text-6xl font-bold text-gray-800 mb-6">
+    Transform Your Campus
+    <span class="gradient-text block mt-2">Placement Management</span>
+   </h2>
+   <p class="text-xl text-gray-600 mb-10 leading-relaxed">
+    Streamline recruitment tracking, manage student records, and gain valuable insights with our comprehensive placement management system.
+   </p>
+   <div class="flex justify-center space-x-4">
+    <a href="register.html" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-2xl transform hover:scale-105 transition">
+     Get Started Free
+    </a>
+    <a href="#features" class="bg-white text-blue-600 px-8 py-4 rounded-full text-lg font-semibold border-2 border-blue-600 hover:bg-blue-50 transition">
+     Learn More
+    </a>
+   </div>
+  </div>
+  
+    <div class="mt-16 float">
+   <div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-2xl p-8">
+    <div class="grid grid-cols-3 gap-4">
+     <div class="bg-gradient-to-br from-blue-100 to-blue-200 p-6 rounded-lg">
+      <div class="text-3xl font-bold text-blue-600">500+</div>
+      <div class="text-sm text-gray-600 mt-2">Students Placed</div>
+     </div>
+     <div class="bg-gradient-to-br from-purple-100 to-purple-200 p-6 rounded-lg">
+      <div class="text-3xl font-bold text-purple-600">150+</div>
+      <div class="text-sm text-gray-600 mt-2">Partner Companies</div>
+     </div>
+     <div class="bg-gradient-to-br from-green-100 to-green-200 p-6 rounded-lg">
+      <div class="text-3xl font-bold text-green-600">95%</div>
+      <div class="text-sm text-gray-600 mt-2">Success Rate</div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </section>
+
+  <section id="features" class="py-20 bg-white">
+  <div class="container mx-auto px-6">
+   <div class="text-center mb-16">
+    <h2 class="text-4xl font-bold text-gray-800 mb-4">Powerful Features</h2>
+    <p class="text-xl text-gray-600">Everything you need to manage campus placements effectively</p>
+   </div>
+   
+   <div class="grid md:grid-cols-3 gap-8">
+    <div class="card-hover bg-gradient-to-br from-blue-50 to-white p-8 rounded-2xl border border-blue-100">
+     <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mb-6">
+      <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+      </svg>
+     </div>
+     <h3 class="text-2xl font-bold text-gray-800 mb-3">Student Records</h3>
+     <p class="text-gray-600 leading-relaxed">Maintain comprehensive student profiles with academic records, skills, and placement preferences all in one place.</p>
+    </div>
+    
+    <div class="card-hover bg-gradient-to-br from-purple-50 to-white p-8 rounded-2xl border border-purple-100">
+     <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mb-6">
+      <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+      </svg>
+     </div>
+     <h3 class="text-2xl font-bold text-gray-800 mb-3">Company Management</h3>
+     <p class="text-gray-600 leading-relaxed">Track visiting companies, job roles, salary packages, and recruitment schedules with ease and precision.</p>
+     </div>
+    
+    <div class="card-hover bg-gradient-to-br from-green-50 to-white p-8 rounded-2xl border border-green-100">
+     <div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mb-6">
+      <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+      </svg>
+     </div>
+     <h3 class="text-2xl font-bold text-gray-800 mb-3">Analytics Dashboard</h3>
+     <p class="text-gray-600 leading-relaxed">Visualize placement trends, salary statistics, and performance metrics through intuitive charts and reports.</p>
+    </div>
+    
+    <div class="card-hover bg-gradient-to-br from-orange-50 to-white p-8 rounded-2xl border border-orange-100">
+     <div class="w-16 h-16 bg-orange-600 rounded-full flex items-center justify-center mb-6">
+      <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+      </svg>
+     </div>
+     <h3 class="text-2xl font-bold text-gray-800 mb-3">Secure Access</h3>
+     <p class="text-gray-600 leading-relaxed">Role-based permissions ensure students and administrators have appropriate access levels for data security.</p>
+    </div>
+    
+    <div class="card-hover bg-gradient-to-br from-pink-50 to-white p-8 rounded-2xl border border-pink-100">
+     <div class="w-16 h-16 bg-pink-600 rounded-full flex items-center justify-center mb-6">
+      <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+      </svg>
+     </div>
+     <h3 class="text-2xl font-bold text-gray-800 mb-3">Advanced Search</h3>
+     <p class="text-gray-600 leading-relaxed">Quickly find student records, company details, or placement information with powerful search and filter options.</p>
+    </div>
+    
+    <div class="card-hover bg-gradient-to-br from-indigo-50 to-white p-8 rounded-2xl border border-indigo-100">
+     <div class="w-16 h-16 bg-indigo-600 rounded-full flex items-center justify-center mb-6">
+      <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+      </svg>
+     </div>
+     <h3 class="text-2xl font-bold text-gray-800 mb-3">Report Generation</h3>
+     <p class="text-gray-600 leading-relaxed">Generate comprehensive placement reports, student performance summaries, and statistical analyses instantly.</p>
+    </div>
+   </div>
+  </div>
+ </section>
+
+  <section id="statistics" class="py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+  <div class="container mx-auto px-6">
+   <div class="text-center mb-16">
+    <h2 class="text-4xl font-bold mb-4">Our Impact in Numbers</h2>
+    <p class="text-xl text-blue-100">Trusted by institutions nationwide</p>
+   </div>
+   
+   <div class="grid md:grid-cols-4 gap-8">
+    <div class="text-center">
+     <div class="text-5xl font-bold mb-2">2500+</div>
+     <div class="text-blue-200">Students Registered</div>
+    </div>
+    <div class="text-center">
+     <div class="text-5xl font-bold mb-2">300+</div>
+     <div class="text-blue-200">Partner Companies</div>
+    </div>
+    <div class="text-center">
+     <div class="text-5xl font-bold mb-2">₹12L</div>
+     <div class="text-blue-200">Average Package</div>
+    </div>
+    <div class="text-center">
+     <div class="text-5xl font-bold mb-2">50+</div>
+     <div class="text-blue-200">Colleges Connected</div>
+    </div>
+   </div>
+  </div>
+ </section>
+ 
+  <section id="testimonials" class="py-20 bg-gray-100">
+  <div class="container mx-auto px-6">
+   <div class="text-center mb-16">
+    <h2 class="text-4xl font-bold text-gray-800 mb-4">What Our Users Say</h2>
+    <p class="text-xl text-gray-600">Hear from college administrators and students who love Placement Tracker.</p>
+   </div>
+   
+   <div class="grid md:grid-cols-3 gap-8">
+    
+        <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
+     <p class="text-lg italic text-gray-700 mb-6">
+      "Placement Tracker has drastically cut down our administrative time. The analytics dashboard is a game-changer for presenting placement data to our management."
+     </p>
+     <div class="flex items-center">
+      <img class="w-12 h-12 rounded-full mr-4 object-cover" src="https://via.placeholder.com/150/505050/ffffff?text=AD" alt="Admin Profile">
+      <div>
+       <p class="font-semibold text-gray-800">Dr. Anjali Desai</p>
+       <p class="text-sm text-gray-500">TPO Head, City Engineering College</p>
+      </div>
+     </div>
+    </div>
+    
+        <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
+     <p class="text-lg italic text-gray-700 mb-6">
+      "As a student, the portal made it so easy to track my applications, see company details, and receive instant updates. I felt much more prepared for the drives!"
+     </p>
+     <div class="flex items-center">
+      <img class="w-12 h-12 rounded-full mr-4 object-cover" src="https://via.placeholder.com/150/505050/ffffff?text=SK" alt="Student Profile">
+      <div>
+       <p class="font-semibold text-gray-800">Sarthak Kumar</p>
+       <p class="text-sm text-gray-500">Final Year B.Tech Student</p>
+      </div>
+     </div>
+    </div>
+    
+        <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
+     <p class="text-lg italic text-gray-700 mb-6">
+      "The company tracking and scheduling module is incredibly efficient. It helps us ensure no date clashes and manage communication with recruiters smoothly."
+     </p>
+     <div class="flex items-center">
+      <img class="w-12 h-12 rounded-full mr-4 object-cover" src="https://via.placeholder.com/150/505050/ffffff?text=RG" alt="Admin Profile">
+      <div>
+       <p class="font-semibold text-gray-800">Ritesh Goel</p>
+       <p class="text-sm text-gray-500">Placement Coordinator</p>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </section>
+
+  <section id="about" class="py-20 bg-gray-50">
+  <div class="container mx-auto px-6">
+   <div class="grid md:grid-cols-2 gap-12 items-center">
+    <div>
+     <h2 class="text-4xl font-bold text-gray-800 mb-6">About Placement Tracker</h2>
+     <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+      The Placement Tracker Management System is a comprehensive solution designed to revolutionize how educational institutions manage their campus recruitment process. Our platform bridges the gap between students, administrators, and recruiting companies.
+     </p>
+     <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+      With powerful features for data management, real-time analytics, and seamless communication, we help colleges maximize placement opportunities and enable students to track their career progress effortlessly.
+     </p>
+     <div class="space-y-4">
+      <div class="flex items-start space-x-3">
+       <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+        </svg>
+       </div>
+       <div>
+        <h4 class="font-semibold text-gray-800">Real-time Updates</h4>
+        <p class="text-gray-600">Instant notifications for placement drives and updates</p>
+       </div>
+      </div>
+      <div class="flex items-start space-x-3">
+       <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+        </svg>
+       </div>
+       <div>
+        <h4 class="font-semibold text-gray-800">Comprehensive Tracking</h4>
+        <p class="text-gray-600">Monitor every stage of the placement process</p>
+       </div>
+      </div>
+      <div class="flex items-start space-x-3">
+       <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+        </svg>
+       </div>
+       <div>
+        <h4 class="font-semibold text-gray-800">Data-Driven Insights</h4>
+        <p class="text-gray-600">Make informed decisions with analytics</p>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="bg-gradient-to-br from-blue-100 to-purple-100 rounded-2xl p-8">
+     <div class="bg-white rounded-xl shadow-lg p-6 mb-4">
+      <div class="flex items-center justify-between mb-4">
+       <span class="text-gray-600">Admin Dashboard</span>
+       <span class="text-green-500 text-sm font-semibold">Active</span>
+      </div>
+      <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+       <div class="h-full bg-gradient-to-r from-blue-500 to-purple-500 w-3/4"></div>
+      </div>
+     </div>
+     <div class="bg-white rounded-xl shadow-lg p-6">
+      <div class="flex items-center justify-between mb-4">
+       <span class="text-gray-600">Student Portal</span>
+       <span class="text-green-500 text-sm font-semibold">Active</span>
+      </div>
+      <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+       <div class="h-full bg-gradient-to-r from-blue-500 to-purple-500 w-4/5"></div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </section>
+
+  <section class="py-16 bg-gradient-to-r from-purple-600 to-pink-600">
+  <div class="container mx-auto px-6 text-center">
+   <h2 class="text-4xl font-bold text-white mb-4">Ready to Modernize Your Placement Cell?</h2>
+   <p class="text-xl text-purple-100 mb-8">Start streamlining your campus recruitment process today. It's free to try!</p>
+   <a href="register.html" class="bg-white text-pink-600 px-10 py-4 rounded-full text-lg font-semibold hover:bg-gray-100 transform hover:scale-105 transition shadow-xl">
+    Request a Free Demo
+   </a>
+  </div>
+ </section>
+
+  <section id="contact" class="py-20 bg-white">
+  <div class="container mx-auto px-6">
+   <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-12">
+     <h2 class="text-4xl font-bold text-gray-800 mb-4">Get In Touch</h2>
+     <p class="text-xl text-gray-600">Have questions? We'd love to hear from you.</p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 gap-8">
+     <div class="space-y-6">
+      <div class="flex items-start space-x-4">
+       <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+        </svg>
+       </div>
+       <div>
+        <h3 class="font-semibold text-gray-800 mb-1">Email</h3>
+        <a href="mailto:placementhelp@gmail.com" class="text-blue-600 hover:underline">placementhelp@gmail.com</a>
+       </div>
+      </div>
+      
+      <div class="flex items-start space-x-4">
+       <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+        <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+        </svg>
+       </div>
+       <div>
+        <h3 class="font-semibold text-gray-800 mb-1">Phone</h3>
+        <p class="text-gray-600">+91 98765 43210</p>
+       </div>
+      </div>
+      
+      <div class="flex items-start space-x-4">
+       <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+        <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+        </svg>
+       </div>
+       <div>
+        <h3 class="font-semibold text-gray-800 mb-1">Address</h3>
+        <p class="text-gray-600">123 College Road, Pune, Maharashtra, India</p>
+       </div>
+      </div>
+     </div>
+     
+     <div class="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-2xl">
+      <h3 class="text-xl font-bold text-gray-800 mb-4">Send us a message</h3>
+      <form class="space-y-4">
+       <input type="text" placeholder="Your Name" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400">
+       <input type="email" placeholder="Your Email" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400">
+       <textarea placeholder="Your Message" rows="4" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+       <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-semibold hover:shadow-lg transition">Send Message</button>
+      </form>
+     </div>
+    </div>
+   </div>
+  </div>
+ </section>
+
+  <footer class="bg-gray-900 text-white py-12">
+  <div class="container mx-auto px-6">
+   <div class="grid md:grid-cols-4 gap-8 mb-8">
+    <div>
+     <div class="flex items-center space-x-2 mb-4">
+      <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+       <span class="text-white font-bold text-xl">PT</span>
+      </div>
+      <h3 class="text-xl font-bold">Placement Tracker</h3>
+     </div>
+     <p class="text-gray-400">Empowering institutions with smart placement management solutions.</p>
+    </div>
+    
+    <div>
+     <h4 class="font-semibold mb-4">Quick Links</h4>
+     <ul class="space-y-2 text-gray-400">
+      <li><a href="#home" class="hover:text-white transition">Home</a></li>
+      <li><a href="#features" class="hover:text-white transition">Features</a></li>
+      <li><a href="#testimonials" class="hover:text-white transition">Testimonials</a></li>       <li><a href="#about" class="hover:text-white transition">About</a></li>
+      <li><a href="#contact" class="hover:text-white transition">Contact</a></li>
+     </ul>
+    </div>
+    
+    <div>
+     <h4 class="font-semibold mb-4">Resources</h4>
+     <ul class="space-y-2 text-gray-400">
+      <li><a href="#" class="hover:text-white transition">Documentation</a></li>
+      <li><a href="#" class="hover:text-white transition">Support</a></li>
+      <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
+      <li><a href="#" class="hover:text-white transition">Terms of Service</a></li>
+     </ul>
+    </div>
+    
+    <div>
+     <h4 class="font-semibold mb-4">Connect With Us</h4>
+     <div class="flex space-x-4">
+            <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition">
+       <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+            <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-400 transition">
+       <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39-.023-.78-.048-1.17-.08a13.995 13.995 0 007.618 2.221 13.983 13.983 0 0013.98-13.98c0-.181-.002-.36-.007-.538A10.638 10.638 0 0024 4.57z"/></svg>
+      </a>
+            <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-700 transition">
+       <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M22.23 0H1.77C.79 0 0 .77 0 1.73v20.54c0 .96.79 1.73 1.77 1.73h20.46c.98 0 1.77-.77 1.77-1.73V1.73c0-.96-.79-1.73-1.77-1.73zM7.17 19.34H3.88V9.38h3.29v9.96zM5.53 7.9c-1.09 0-1.98-.87-1.98-1.95S4.44 4 5.53 4s1.98.87 1.98 1.95-1.07 1.95-1.98 1.95zm13.81 11.44h-3.29v-5.26c0-1.26-.45-2.12-1.58-2.12-.86 0-1.38.58-1.61 1.15-.08.2-.1.49-.1.79v5.44H9.77s.05-9.01 0-9.96h3.29v1.41c.44-.65 1.25-1.58 2.97-1.58 2.17 0 3.82 1.41 3.82 4.45v5.68z"/></svg>
+      </a>
+            <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-pink-600 transition">
+       <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.013 4.85.07c3.774.148 5.514 1.98 5.663 5.765.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.149 3.784-1.89 5.615-5.663 5.765-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-3.773-.15-5.514-1.981-5.663-5.765-.058-1.266-.07-1.646-.07-4.85s.013-3.584.07-4.85c.149-3.784 1.89-5.616 5.663-5.765 1.266-.058 1.646-.07 4.85-.07zm0 2.224c-3.14 0-3.518.012-4.763.068-3.327.13-4.855 1.777-4.982 5.097-.056 1.245-.067 1.623-.067 4.763s.011 3.518.067 4.763c.127 3.32 1.655 4.967 4.982 5.097 1.245.056 1.623.068 4.763.068s3.518-.012 4.763-.068c3.327-.13 4.855-1.777 4.982-5.097.056-1.245.067-1.623.067-4.763s-.011-3.518-.067-4.763c-.127-3.32-1.655-4.967-4.982-5.097-1.245-.056-1.623-.068-4.763-.068zm0 1.94c3.085 0 5.592 2.507 5.592 5.592s-2.507 5.592-5.592 5.592-5.592-2.507-5.592-5.592 2.507-5.592 5.592-5.592zm0 2.224c-1.865 0-3.368 1.503-3.368 3.368s1.503 3.368 3.368 3.368 3.368-1.503 3.368-3.368-1.503-3.368-3.368-3.368zm6.54-3.567c-.636 0-1.15.514-1.15 1.15s.514 1.15 1.15 1.15 1.15-.514 1.15-1.15-.514-1.15-1.15-1.15z"/></svg>
+      </a>
+     </div>
+    </div>
+   </div>
+  </div>
+  
+  <div class="container mx-auto px-6 mt-8 pt-8 border-t border-gray-800 text-center">
+   <p class="text-gray-400">&copy; 2025 Placement Tracker. All rights reserved.</p>
+  </div>
+ </footer>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+   const mobileMenuButton = document.getElementById('mobileMenuButton');
+   const mobileMenu = document.getElementById('mobileMenu');
+
+   mobileMenuButton.addEventListener('click', function() {
+    // Toggle the 'hidden' class on the mobile menu container
+    mobileMenu.classList.toggle('hidden');
+   });
+
+   // Optional: Hide menu when a link is clicked
+   const mobileLinks = mobileMenu.querySelectorAll('a');
+   mobileLinks.forEach(link => {
+    link.addEventListener('click', function() {
+     mobileMenu.classList.add('hidden');
+    });
+   });
+  });
+ </script>
+
+</body>
+</html>
